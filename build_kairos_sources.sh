@@ -16,7 +16,8 @@ echo "Building docker image"
 docker build . -t kairos_installation
 
 echo "Running docker container and copying KairosDB sources"
-docker run -d --name build_kairos --rm  kairos_installation && \
-docker cp build_kairos:/root/kairosdb/build/.  $kairos_sources_dir/. 
+docker run -d --name build_kairos --rm  kairos_installation sleep 100 && \
+docker cp build_kairos:/root/kairosdb/build/.  $kairos_sources_dir/. && \
+docker kill build_kairos
 
 exit 0 
